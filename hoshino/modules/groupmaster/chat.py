@@ -52,7 +52,7 @@ async def ddhaole(session):
 
 @sv.on_command('我好了', only_to_me=False)
 async def nihaole(session):
-    await session.send('不许好，憋回去！')
+    # await session.send('不许好，憋回去！')
     await util.silence(session.ctx, 0)
 
 # ============================================ #
