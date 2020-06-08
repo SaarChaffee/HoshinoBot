@@ -5,20 +5,20 @@ from nonebot.default_config import *
 
 DEBUG = False
 
-SUPERUSERS = [10000]    # 填写超级用户的QQ号，可填多个用半角逗号","隔开
+SUPERUSERS = [1240148332]    # 填写超级用户的QQ号，可填多个用半角逗号","隔开
 COMMAND_START = {''}    # 命令前缀（空字符串匹配任何消息）
 COMMAND_SEP = set()     # 命令分隔符（hoshino不需要该特性，保持为set()即可）
-NICKNAME = ''           # 机器人的昵称。呼叫昵称等同于@bot，可用元组配置多个昵称
+NICKNAME = ('蒂蒂', '斯卡蒂')          # 机器人的昵称。呼叫昵称等同于@bot，可用元组配置多个昵称
 
 
 # hoshino监听的端口与ip
 PORT = 8080
-HOST = '127.0.0.1'      # Windows部署使用此条配置
+# HOST = '127.0.0.1'      # Windows部署使用此条配置
 # HOST = '172.17.0.1'   # linux + docker使用此条配置
 # docker桥的ip可能随环境不同而有变化
 # 使用这行命令`ip addr show docker0 | grep -Po 'inet \K[\d.]+'`查看你的docker桥ip
 # HOST = '172.18.0.1'   # 阿里云的linux + docker多数情况是这样
-# HOST = '0.0.0.0'      # 开放公网访问使用此条配置（不安全）
+HOST = '0.0.0.0'      # 开放公网访问使用此条配置（不安全）
 
 IS_CQPRO = False        # 是否使用Pro版酷Q功能
 
@@ -43,6 +43,7 @@ MODULES_ON = {
     # 'mikan',
     'pcrclanbattle',
     'priconne',
+    'yobot',
     # 'setu',
     # 'translate',
     # 'twitter',
