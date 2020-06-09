@@ -17,12 +17,13 @@ RUN set -x \
         && git clone https://gitee.com/saarchaffee/HoshinoBot.git \
         && { \
         echo '#!/bin/sh'; \
-        echo 'cd /home/HoshinoBot/HoshinoBot/ && python3 -m pip install -r /home/HoshinoBot/HoshinoBot/requirements.txt && pip install -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple && python3.8 /home/HoshinoBot/HoshinoBot/run.py'; \
+        echo 'cd /home/HoshinoBot/HoshinoBot/ && python3 -m pip3 install -r /home/HoshinoBot/HoshinoBot/requirements.txt && pip3 install -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple && python3.8 /home/HoshinoBot/HoshinoBot/run.py'; \
         } > /home/HoshinoBot/entry.sh \
         && chmod 755 /home/HoshinoBot/entry.sh \
         && chmod +x /home/HoshinoBot/entry.sh" \
         && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
-        && apt-get clean autoclean \
+        && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple
+&& apt-get clean autoclean \
         && apt-get autoremove -y \
         && rm -rf /var/lib/apt/lists/*
 
