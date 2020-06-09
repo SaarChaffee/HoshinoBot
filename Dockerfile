@@ -22,8 +22,8 @@ RUN set -x \
         && chmod 755 /home/HoshinoBot/entry.sh \
         && chmod +x /home/HoshinoBot/entry.sh" \
         && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
-        && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple
-&& apt-get clean autoclean \
+        && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple  \
+        && apt-get clean autoclean \
         && apt-get autoremove -y \
         && rm -rf /var/lib/apt/lists/*
 
