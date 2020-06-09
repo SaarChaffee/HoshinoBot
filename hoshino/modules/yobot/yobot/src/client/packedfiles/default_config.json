@@ -3,7 +3,7 @@
   "port": 8080,
   "access_token": "41873817hdukas.#",
   "client_salt": null,
-  "public_address": null,
+  "public_address": "saarchaffee.tk:8080",
   "public_basepath": "/yobot/",
   "web_mode_hint": true,
   "super-admin": [],
