@@ -19,14 +19,14 @@ RUN set -x \
         echo '#!/bin/sh'; \
         echo 'cd /home/HoshinoBot/HoshinoBot/'; \
         echo 'python3 -m pip install -r /home/HoshinoBot/HoshinoBot/requirements.txt';\
-        echo 'git submodule https://gitee.com/saarchaffee/yobot.git /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot';\
+        echo 'git submodule add https://gitee.com/saarchaffee/yobot.git /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot';\
         echo 'pip install -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple';\
         echo 'python3.8 /home/HoshinoBot/HoshinoBot/run.py'; \
         } > /home/HoshinoBot/entry.sh \
         && chmod 755 /home/HoshinoBot/entry.sh \
         && chmod +x /home/HoshinoBot/entry.sh" \
         && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
-        && git submodule https://gitee.com/saarchaffee/yobot.git /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot  \
+        && git submodule add https://gitee.com/saarchaffee/yobot.git /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot  \
         && pip3 install --no-cache-dir -r /home/HoshinoBot/HoshinoBot/hoshino/modules/yobot/yobot/src/client/requirements.txt  -i https://pypi.tuna.tsinghua.edu.cn/simple  \
         && apt-get clean autoclean \
         && apt-get autoremove -y \
