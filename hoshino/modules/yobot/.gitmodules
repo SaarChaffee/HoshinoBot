@@ -1,0 +1,3 @@
+[submodule "yobot"]
+	path = yobot
+	url = https://gitee.com/saarchaffee/yobot.git
