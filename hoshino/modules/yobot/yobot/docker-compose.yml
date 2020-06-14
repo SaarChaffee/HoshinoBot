@@ -4,26 +4,28 @@ services:
     build: .
     ports:
       - "9222:9222"
+    env_file: .env
     container_name: skadi
     restart: on-failure
     volumes:
-      - .:/home/HoshinoBot/HoshinoBot
+      - .:/home/yobot/yobot
     networks:
       - bot_net
 
   cqhttp:
     image: richardchien/cqhttp:latest
+    env_file: .env
     restart: on-failure
     environment:
       - VNC_PASSWD=070809abcD
       - COOLQ_ACCOUNT=3277653281 # 要登录的 QQ 账号，可选但建议填
-      - COOLQ_VERSION_URL=http://dlsec.cqp.me/cqp-xiaoi
+      - COOLQ_URL=${COOLQ_VERSION_URL}
       - CQHTTP_USE_HTTP=false
       - CQHTTP_USE_WS=false
       - CQHTTP_USE_WS_REVERSE=true
-      - CQHTTP_WS_REVERSE_API_URL=ws://bot:8080/ws/api/
-      - CQHTTP_WS_REVERSE_EVENT_URL=ws://bot:8080/ws/event/
-      - CQHTTP_WS_REVERSE_URL=ws://bot:8080
+      - CQHTTP_WS_REVERSE_API_URL=ws://bot:9222/ws/api/
+      - CQHTTP_WS_REVERSE_EVENT_URL=ws://bot:9222/ws/event/
+      - CQHTTP_WS_REVERSE_URL=ws://bot:9222
       - CQHTTP_WS_REVERSE_RECONNECT_INTERVAL=4000
       - CQHTTP_REVERSE_RECONNECT_ON_CODE_1000=true
       - CQHTTP_POST_MESSAGE_FORMAT=string
