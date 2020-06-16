@@ -10,6 +10,3 @@ services:
       - .:/home/HoshinoBot/HoshinoBot
     networks:
       - bot_net
-networks:
-  bot_net:
-    driver: bridge
