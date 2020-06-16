@@ -277,6 +277,7 @@ class Service:
                     return
             return self.bot.on_message(event)(wrapper)
         return deco
+
     def on_keyword(self, keywords: Iterable, *, normalize=True, event='group') -> Callable:
         if isinstance(keywords, str):
             keywords = (keywords, )
@@ -409,8 +410,8 @@ class Service:
                     await asyncio.sleep(interval_time)
                     msg = randomiser(msg) if randomiser else msg
                     await bot.send_group_msg(self_id=random.choice(selfids), group_id=gid, message=msg)
+                l = len(msgs):
                 if l:
-                    = len(msgs):
                     self.logger.info(f"群{gid} 投递{TAG}成功 共{l}条消息")
             except Exception as e:
                 self.logger.exception(e)
