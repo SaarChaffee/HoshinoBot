@@ -9,4 +9,7 @@ services:
     volumes:
       - .:/home/HoshinoBot/HoshinoBot
     networks:
-      - bot_net
+      - hosbot_net
+networks:
+  hosbot_net:
+    driver: bridge
