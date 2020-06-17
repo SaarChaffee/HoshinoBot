@@ -45,6 +45,7 @@ MODULES_ON = {
     'priconne',
     'longwang',
     'webManager',
+    'apply_title',
     # 'setu',
     # 'translate',
     # 'twitter',

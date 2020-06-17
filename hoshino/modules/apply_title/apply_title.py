@@ -3,7 +3,7 @@ from time import time
 
 bot = get_bot()
 last_req = {}
-master_group = {220616105}  # bot是群主的群号
+master_group = {220616105, 770701744}  # bot是群主的群号
 
 
 @bot.on_message('group')
