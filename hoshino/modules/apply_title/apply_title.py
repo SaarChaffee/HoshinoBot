@@ -22,6 +22,7 @@ async def _(context):
     if context['message'].startswith('申请头衔'):
         if context['group_id'] in master_group:
             user_id = context['user_id']
+            message = str(context['message'])
             await session.send('新头衔要好好佩戴哦')
             await bot.set_group_special_title(
                 group_id=context['group_id'],
