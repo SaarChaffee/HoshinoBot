@@ -10,7 +10,7 @@ master_group = {220616105, 770701744}  # bot是群主的群号
 async def _(context):
     if context['group_id'] in master_group:
         message = str(event. message)
-        if message. startswith('申请头衔’):
+        if message.startswith('申请头衔’):
             special_ title = message[4:]
             try:
                 uid = event. user id
