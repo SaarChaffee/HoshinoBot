@@ -33,7 +33,7 @@ USER HoshinoBot
 
 WORKDIR /home/HoshinoBot
 
-EXPOSE 9222
+EXPOSE 9221
 
 VOLUME /home/HoshinoBot/HoshinoBot
 

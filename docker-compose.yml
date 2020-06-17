@@ -3,7 +3,7 @@ services:
   bot:
     build: .
     ports:
-      - "9222:9222"
+      - "9221:9221"
     container_name: skadi_hoshino
     restart: on-failure
     volumes:
