@@ -33,7 +33,7 @@ async def chat_laogong(session):
 
 @sv.on_command('mua', only_to_me=True)
 async def chat_mua(session):
-    await session.send('バカ!', at_sender=True)
+    await session.send('あなたは何をしているの!このバカ', at_sender=True)
 
 
 @sv.on_command('我有个朋友说他好了', aliases=('我朋友说他好了', ), only_to_me=False)
