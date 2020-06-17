@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+</head>
+<body>
+    <div>
+        请输入正确密码后返回:<input id='passwd' type="text">
+        <button onclick="submmit()" id="submmitBtn">确认</button>
+    </div>  
+
+    <script>
+        var passwd = '{{ passwd }}';
+        var input_pwd ;
+        console.log(input_pwd)
+        function submmit() {
+            input_pwd = document.getElementById("passwd").value;
+            console.log(input_pwd);
+            login_data = '{"passwd":"' +input_pwd+ '"}';
+            console.log(login_data);
+            var url = 'http://{{ public_address }}:{{ port }}/check';
+            console.log(url);
+            var request = new XMLHttpRequest();
+            request.onload = function() {
+                if (request.status == 200) {
+                    // console.log('登录数据已发送')
+                }
+                else {
+                    alert('exception');
+                } 
+            };
+
+            request.open('POST',url);
+            request.send(JSON.stringify(login_data));
+        }
+
+    </script>
+</body>
+</html>
