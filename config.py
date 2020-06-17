@@ -44,6 +44,7 @@ MODULES_ON = {
     'pcrclanbattle',
     'priconne',
     'longwang',
+    'webManager',
     # 'setu',
     # 'translate',
     # 'twitter',
