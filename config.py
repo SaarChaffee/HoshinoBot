@@ -17,8 +17,8 @@ PORT = 9221
 # HOST = '172.17.0.1'   # linux + docker使用此条配置
 # docker桥的ip可能随环境不同而有变化
 # 使用这行命令`ip addr show docker0 | grep -Po 'inet \K[\d.]+'`查看你的docker桥ip
-HOST = '172.18.0.1'   # 阿里云的linux + docker多数情况是这样
-# HOST = '0.0.0.0'      # 开放公网访问使用此条配置（不安全）
+# HOST = '172.18.0.1'   # 阿里云的linux + docker多数情况是这样
+HOST = '0.0.0.0'      # 开放公网访问使用此条配置（不安全）
 
 IS_CQPRO = False        # 是否使用Pro版酷Q功能
 
