@@ -46,6 +46,7 @@ MODULES_ON = {
     'longwang',
     'webManager',
     'apply_title',
+    'clanrank',
     # 'setu',
     # 'translate',
     # 'twitter',
