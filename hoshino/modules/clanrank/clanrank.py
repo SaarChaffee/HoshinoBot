@@ -1,14 +1,17 @@
-import requests,json,time
-from hoshino import util,Service
+import requests
+import json
+import time
+from hoshino import util, Service
 from hoshino.util import FreqLimiter
-sv = Service("clanrank",enable_on_default=True,visible = False)
+sv = Service("clanrank", enable_on_default=True, visible=False)
 
 url_first = "https://service-kjcbcnmw-1254119946.gz.apigw.tencentcs.com/"
 # 设置两次查询的最小间隔时间
 _time_limit = 30
 _lmt = FreqLimiter(_time_limit)
 
-def get_rank(info,info_type):
+
+def get_rank(info, info_type):
     """
     获取公会排名(25010之前),刷新时间为30分钟一次,相比于游戏内排名有约30分钟延迟\n
     info_type可能的值"leader"(按会长名),"name"(按公会名),"score"(按分数),"rank"(按排名)\n
@@ -17,22 +20,23 @@ def get_rank(info,info_type):
     """
     url = url_first + info_type
     url += '/'
-    headers = {"Content-Type": "application/json","Referer": "https://kengxxiao.github.io/Kyouka/",'Custom-Source':''}
-    
+    headers = {"Content-Type": "application/json",
+               "Referer": "https://kengxxiao.github.io/Kyouka/", 'Custom-Source': ''}
+
     if info_type == "name":
         url += '-1'
-        content = json.dumps({"history":"0","clanName": info})
+        content = json.dumps({"history": "0", "clanName": info})
     elif info_type == "leader":
         url += '-1'
-        content = json.dumps({"history":"0","leaderName": info})
+        content = json.dumps({"history": "0", "leaderName": info})
     elif info_type == "score":
         # 无需额外请求头
         url += info
-        content = json.dumps({"history":"0"})
+        content = json.dumps({"history": "0"})
     elif info_type == "rank":
         url += info
-        content = json.dumps({"history":"0"})
-    else :
+        content = json.dumps({"history": "0"})
+    else:
         # 这都能填错?爪巴!
         msg = f"查询失败,内部错误,请联系维护人员"
         return msg
@@ -42,7 +46,7 @@ def get_rank(info,info_type):
         # Bad request
         msg = f"查询失败,错误代码{r_dec['code']},错误信息{r_dec['msg']}请联系维护人员"
         return msg
-    
+
     msg = ">>>公会战排名查询\n"
     # 查询不到结果
     result = len(r_dec['data'])
@@ -58,11 +62,12 @@ def get_rank(info,info_type):
         damage = r_dec['data'][i]['damage']
         leader = r_dec['data'][i]['leader_name']
         num = r_dec['data'][i]
-        msg_new = f"第{i+1}条信息:\n公会名称：{clanname}\n会长：{leader}\n成员数量：{num}\n目前排名：{rank}\n造成伤害：{damage}\n\n"
+        msg_new = f"第{i+1}条信息:\n公会名称：{clanname}\n会长：{leader}\n目前排名：{rank}\n造成伤害：{damage}\n\n"
         msg += msg_new
     return msg
 
-@sv.on_rex(r'[工公]会排名\s*(.{1,20})$', normalize = False)
+
+@sv.on_rex(r'[工公]会排名\s*(.{1,20})$', normalize=False)
 async def rank_query_by_name(bot, ctx, match):
     """
     通过公会名查询排名
@@ -73,11 +78,12 @@ async def rank_query_by_name(bot, ctx, match):
         return
     _lmt.start_cd(uid)
     clan_name = match.group(1)
-    msg = get_rank(clan_name,"name")
+    msg = get_rank(clan_name, "name")
     msg += f"查询有{_time_limit}秒冷却"
-    await bot.send(ctx,msg)
+    await bot.send(ctx, msg)
 
-@sv.on_rex(r'会长排名\s*(.{1,20})$', normalize = False)
+
+@sv.on_rex(r'会长排名\s*(.{1,20})$', normalize=False)
 async def rank_query_by_leader(bot, ctx, match):
     """
     通过会长名字查询排名
@@ -88,11 +94,12 @@ async def rank_query_by_leader(bot, ctx, match):
         return
     _lmt.start_cd(uid)
     leader_name = match.group(1)
-    msg = get_rank(leader_name,"leader")
+    msg = get_rank(leader_name, "leader")
     msg += f"查询有{_time_limit}秒冷却"
-    await bot.send(ctx,msg)
+    await bot.send(ctx, msg)
 
-@sv.on_rex(r'查看排名\s*(.{1,20})$', normalize = False)
+
+@sv.on_rex(r'查看排名\s*(.{1,20})$', normalize=False)
 async def rank_query_by_rank(bot, ctx, match):
     """
     查看指定名次的公会信息
@@ -103,11 +110,12 @@ async def rank_query_by_rank(bot, ctx, match):
         return
     _lmt.start_cd(uid)
     rank = match.group(1)
-    msg = get_rank(rank,"rank")
+    msg = get_rank(rank, "rank")
     msg += f"查询有{_time_limit}秒冷却"
-    await bot.send(ctx,msg)
+    await bot.send(ctx, msg)
 
-@sv.on_rex(r'分数排名\s*(.{1,20})$', normalize = False)
+
+@sv.on_rex(r'分数排名\s*(.{1,20})$', normalize=False)
 async def rank_query_by_score(bot, ctx, match):
     """
     查看指定分数的公会信息,只会返回当前分数最高排名的信息
@@ -118,7 +126,7 @@ async def rank_query_by_score(bot, ctx, match):
         return
     _lmt.start_cd(uid)
     score = match.group(1)
-    msg = get_rank(score,"score")
+    msg = get_rank(score, "score")
     msg += f"只会返回当前分数最高排名公会的信息\n"
     msg += f"查询有{_time_limit}秒冷却"
-    await bot.send(ctx,msg) 
+    await bot.send(ctx, msg)
