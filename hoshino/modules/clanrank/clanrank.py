@@ -7,7 +7,7 @@ sv = Service("clanrank", enable_on_default=True, visible=False)
 
 url_first = "https://service-kjcbcnmw-1254119946.gz.apigw.tencentcs.com/"
 # 设置两次查询的最小间隔时间
-_time_limit = 30
+_time_limit = 0
 _lmt = FreqLimiter(_time_limit)
 
 
