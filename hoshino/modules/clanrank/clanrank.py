@@ -57,7 +57,7 @@ def get_rank(info,info_type):
         rank = r_dec['data'][i]['rank']
         damage = r_dec['data'][i]['damage']
         leader = r_dec['data'][i]['leader_name']
-        num = r_dec['data'][i]['member_num']
+        num = r_dec['data'][i]
         msg_new = f"第{i+1}条信息:\n公会名称：{clanname}\n会长：{leader}\n成员数量：{num}\n目前排名：{rank}\n造成伤害：{damage}\n\n"
         msg += msg_new
     return msg
