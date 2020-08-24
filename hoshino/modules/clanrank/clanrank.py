@@ -79,7 +79,7 @@ async def rank_query_by_name(bot, ctx, match):
     _lmt.start_cd(uid)
     clan_name = match.group(1)
     msg = get_rank(clan_name, "name")
-    msg += f"查询有{_time_limit}秒冷却"
+    # msg += f"查询有{_time_limit}秒冷却"
     await bot.send(ctx, msg)
 
 
@@ -95,7 +95,7 @@ async def rank_query_by_leader(bot, ctx, match):
     _lmt.start_cd(uid)
     leader_name = match.group(1)
     msg = get_rank(leader_name, "leader")
-    msg += f"查询有{_time_limit}秒冷却"
+    # msg += f"查询有{_time_limit}秒冷却"
     await bot.send(ctx, msg)
 
 
@@ -111,7 +111,7 @@ async def rank_query_by_rank(bot, ctx, match):
     _lmt.start_cd(uid)
     rank = match.group(1)
     msg = get_rank(rank, "rank")
-    msg += f"查询有{_time_limit}秒冷却"
+    # msg += f"查询有{_time_limit}秒冷却"
     await bot.send(ctx, msg)
 
 
@@ -128,5 +128,5 @@ async def rank_query_by_score(bot, ctx, match):
     score = match.group(1)
     msg = get_rank(score, "score")
     msg += f"只会返回当前分数最高排名公会的信息\n"
-    msg += f"查询有{_time_limit}秒冷却"
+    # msg += f"查询有{_time_limit}秒冷却"
     await bot.send(ctx, msg)
