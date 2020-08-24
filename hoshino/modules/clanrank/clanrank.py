@@ -52,7 +52,7 @@ def get_rank(info, info_type):
     result = len(r_dec['data'])
     queryTime = time.localtime(r_dec['ts'])
     formatTime = time.strftime('%Y-%m-%d %H:%M', queryTime)
-    msg += f'数据更新时间{formatTime}\n'
+    # msg += f'数据更新时间{formatTime}\n'
     if result == 0:
         msg += "没有查询结果,当前仅能查询前25010名公会,排名信息30分钟更新一次,相比于游戏内数据有10分钟延迟"
         return msg
