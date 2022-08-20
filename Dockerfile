@@ -7,9 +7,10 @@ ENV PATH="${PATH}:/root/.local/bin"
 COPY ./ /HoshinoBot/
 
 RUN /usr/local/bin/python -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple \
-  && pip install --upgrade -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
-  && pip install Jinja2==3.0.3 -U -i https://pypi.tuna.tsinghua.edu.cn/simple\
-  && pip install werkzeug==2.0.3 -U -i https://pypi.tuna.tsinghua.edu.cn/simple
+  && pip install --upgrade -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple\
+  && chmod 777 ./res/msyh.ttc \
+  && cp ./res/msyh.ttc /usr/share/fonts/truetype/ \
+  && fc-cache -fv
 
 EXPOSE 9220
 
