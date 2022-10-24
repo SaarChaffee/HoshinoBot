@@ -10,7 +10,7 @@ requests~=2.27.1
 sogou_tr_free~=0.0.8
 zhconv~=1.4.1
 Pillow~=9.1.1
-matplotlib~=3.2.1
+matplotlib==3.6.1
 numpy~=1.22.3
 beautifulsoup4~=4.10.0
 pygtrie~=2.3.3
@@ -19,7 +19,7 @@ peony-twitter[all]~=2.1.2
 cloudscraper~=1.2.60
 imageio==2.19.2
 opencv_python_headless
-typing_extensions==3.7.4.3
+typing_extensions==4.1.0
 httpx==0.22.0
 aiofiles==0.8.0
 aiocache==0.11.1
@@ -31,3 +31,6 @@ pathos==0.2.8
 prettytable==3.2.0
 GitPython==3.1.27
 fuzzywuzzy==0.18.0
+pydantic==1.10.2
+bbcode==1.1.0
+anyio==3.6.1
