@@ -1,5 +1,5 @@
 aiocache==0.11.1
-aiocqhttp==1.4.2
+aiocqhttp==1.4.3
 aiofiles==0.8.0
 aiohttp==3.8.4
 anyio==3.6.1
@@ -11,7 +11,7 @@ emoji==1.7.0
 fontTools==4.33.3
 fuzzywuzzy==0.18.0
 GitPython==3.1.27
-httpx==0.22.0
+httpx==0.24.1
 imageio==2.19.2
 Jinja2==3.0.3
 lxml==4.9.3
@@ -28,11 +28,11 @@ psutil==5.9.5
 pydantic==1.10.2
 pygtrie==2.3.3
 pytz==2023.3
-Quart==0.14.1
-requests==2.27.1
+Quart==0.18.4
+requests==2.31.0
 sogou_tr_free~=0.0.8
 tinydb==4.1.1
 typing_extensions==4.1.0
-werkzeug==2.0.3
+werkzeug==2.3.6
 wsproto==0.15.0
 zhconv==1.4.3
