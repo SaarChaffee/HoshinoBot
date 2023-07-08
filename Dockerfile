@@ -7,7 +7,9 @@ ENV PATH="${PATH}:/root/.local/bin"
 COPY ./ /HoshinoBot/
 
 RUN python3 -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple \
-  && pip install --upgrade -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+  && pip install --upgrade -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+  && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo 'Asia/Shanghai' > /etc/timezone
 
 EXPOSE 9220
 
