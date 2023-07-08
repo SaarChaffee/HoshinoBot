@@ -454,7 +454,7 @@ class SauceNAO():
 
                 service_name, info = sauces_info(sauce)
 
-                putline = f"{thumbnail_image}\n[{service_name}][{url}] 相似度:{similarity}%\n{info}"
+                putline = f"{thumbnail_image}\n[{service_name}]：{url} 相似度:{similarity}%\n{info}"
                 if repass:
                     repass = "\n".join([repass, putline])
                 else:
@@ -536,7 +536,7 @@ class ascii2d():
                     thumbnail_image = "[预览图下载失败]"
             else:
                 thumbnail_image = ""
-            putline = f"{thumbnail_image}\n[{line[1]}][{line[0]}]\n{line[3]}"
+            putline = f"{thumbnail_image}\n[{line[1]}]：{line[0]}\n{line[3]}"
             po = "\n".join([po, putline])
 
         return po
