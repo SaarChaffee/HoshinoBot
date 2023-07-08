@@ -1,5 +1,7 @@
 Jinja2==3.0.3
 werkzeug==2.0.3
+Quart==0.14.1
+MarkupSafe~=1.0
 wsproto~=0.15.0
 nonebot[scheduler]==1.8.0
 aiocqhttp~=1.4.0
