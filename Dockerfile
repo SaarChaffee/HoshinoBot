@@ -13,7 +13,7 @@ RUN python3 -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/si
   && sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list \
   && sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list \
   && apt update \
-  && apt -y install git fonts-noto\
+  && apt -y install git fontconfig fonts-noto \
   && chmod 777 ./res/msyh.ttc \
   && cp ./res/msyh.ttc /usr/share/fonts/truetype/ \
   && fc-cache -fv \
