@@ -48,6 +48,8 @@ async def disable_service(session: CommandSession):
 async def switch_service(session: CommandSession, turn_on: bool):
     action_tip = '启用' if turn_on else '禁用'
     if session.ctx['message_type'] == 'group':
+        if session.ctx['group_id'] in session.bot.config.BLACK_LIST:
+            session.finish()
         names = session.current_arg_text.split()
         if not names:
             session.finish(f"空格后接要{action_tip}的服务名", at_sender=True)
