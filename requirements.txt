@@ -30,6 +30,7 @@ psutil==5.9.5
 pycryptodome==3.18.0
 pydantic==1.10.2
 pygtrie==2.3.3
+python-Levenshtein==0.25.1
 pytz==2023.3
 Quart==0.18.4
 requests==2.31.0
