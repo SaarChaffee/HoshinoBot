@@ -20,24 +20,24 @@ def get_support_rank(t: datetime, server):
     return rank
 
 
-@sv.on_rex(r'^(\*?([日台国陆b])服?([前中后]*)卫?)?rank(表|推荐|指南)?$')
-async def rank_sheet(bot, ev):
-    match = ev['match']
-    is_jp = match.group(2) == '日'
-    is_tw = match.group(2) == '台'
-    is_cn = match.group(2) and match.group(2) in '国陆b'
-    if not is_jp and not is_tw and not is_cn:
-        await bot.send(ev, '\n请问您要查询哪个服务器的rank表？\n*日rank表\n*台rank表\n*陆rank表', at_sender=True)
-        return
-    msg = [
-        '\n※rank表仅供参考，升r有风险，强化需谨慎\n※请以会长要求为准',
-    ]
-    if is_jp:
-        await bot.send(ev, f"\n休闲：输出拉满 辅助R{get_support_rank(datetime.now(), 'jp')}-0\n一档：问你家会长", at_sender=True)
-    elif is_tw:
-        await bot.send(ev, f"\n休闲：输出拉满 辅助R{get_support_rank(datetime.now(), 'tw')}-0\n一档：问你家会长", at_sender=True)
-    elif is_cn:
-        await bot.send(ev, f"https://www.bilibili.com/read/cv19044402\n{pcn}", at_sender=True)
+# @sv.on_rex(r'^(\*?([日台国陆b])服?([前中后]*)卫?)?rank(表|推荐|指南)?$')
+# async def rank_sheet(bot, ev):
+#     match = ev['match']
+#     is_jp = match.group(2) == '日'
+#     is_tw = match.group(2) == '台'
+#     is_cn = match.group(2) and match.group(2) in '国陆b'
+#     if not is_jp and not is_tw and not is_cn:
+#         await bot.send(ev, '\n请问您要查询哪个服务器的rank表？\n*日rank表\n*台rank表\n*陆rank表', at_sender=True)
+#         return
+#     msg = [
+#         '\n※rank表仅供参考，升r有风险，强化需谨慎\n※请以会长要求为准',
+#     ]
+#     if is_jp:
+#         await bot.send(ev, f"\n休闲：输出拉满 辅助R{get_support_rank(datetime.now(), 'jp')}-0\n一档：问你家会长", at_sender=True)
+#     elif is_tw:
+#         await bot.send(ev, f"\n休闲：输出拉满 辅助R{get_support_rank(datetime.now(), 'tw')}-0\n一档：问你家会长", at_sender=True)
+#     elif is_cn:
+#         await bot.send(ev, f"https://www.bilibili.com/read/cv19044402\n{pcn}", at_sender=True)
         # msg.append(f'※不定期搬运自nga\n※制作by樱花铁道之夜\nR{rank_cn} rank表：\n{pcn}')
         # await bot.send(ev, '\n'.join(msg), at_sender=True)
         # await util.silence(ev, 60)
