@@ -1,0 +1,49 @@
+name: hoshino
+channels:
+- conda-forge
+- anaconda
+dependencies:
+- python=3.8
+- aiocache
+- aiofiles
+- aiohttp
+- anyio
+- beautifulsoup4
+- distro
+- emoji
+- fontTools
+- fuzzywuzzy
+- GitPython
+- httpx
+- imageio
+- Jinja2
+- loguru
+- lxml
+- MarkupSafe
+- matplotlib
+- numpy
+- pathos
+- Pillow
+- prettytable
+- psutil
+- pycryptodome
+- pydantic
+- pygtrie
+- python-Levenshtein
+- pytz
+- Quart
+- requests
+- tinydb
+- typing_extensions
+- werkzeug
+- wsproto
+- opencv
+- pip:
+  - msgpack
+  - aiocqhttp
+  - bbcode
+  - cloudscraper
+  - nonebot[scheduler]
+  - peony-twitter[all]
+  - sogou_tr_free
+  - zhconv

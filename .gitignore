@@ -14,7 +14,7 @@ img/
 imgs/
 image/
 images/
-
+.DS_Store
 # 非公开的组件
 hoshino/modules/pcrclanbattle/clanbattlev3
 hoshino/modules/pcrclanbattle/clanbattlev4
