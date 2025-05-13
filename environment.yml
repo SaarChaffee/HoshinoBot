@@ -3,12 +3,12 @@ channels:
 - conda-forge
 - anaconda
 dependencies:
-- python=3.8
+- python=3.10
 - aiocache
 - aiofiles
-- aiohttp
+- aiohttp~=3.8.1
 - anyio
-- beautifulsoup4
+- beautifulsoup4~=4.9.0
 - distro
 - emoji
 - fontTools
@@ -16,34 +16,42 @@ dependencies:
 - GitPython
 - httpx
 - imageio
-- Jinja2
+- Jinja2~=2.11.2
 - loguru
-- lxml
-- MarkupSafe
+- lxml>=4.9.1
+- MarkupSafe~=1.0
 - matplotlib
-- numpy
+- numpy~=1.22.3
 - pathos
-- Pillow
+- Pillow~=9.1.0
 - prettytable
 - psutil
 - pycryptodome
 - pydantic
-- pygtrie
+- pygtrie~=2.3.3
 - python-Levenshtein
-- pytz
-- Quart
-- requests
-- tinydb
+- pytz>=2019.3
+- Quart=0.14.1
+- requests>=2.23.0
+- tinydb~=4.1.1
 - typing_extensions
-- werkzeug
+- werkzeug~=1.0.1
 - wsproto
 - opencv
+- msgpack-python
+- httpx
+- pypinyin
+- pyyaml
+- strenum
+- urllib3~=1.26
 - pip:
-  - msgpack
-  - aiocqhttp
+  - aiocqhttp~=1.4.0
   - bbcode
-  - cloudscraper
-  - nonebot[scheduler]
-  - peony-twitter[all]
-  - sogou_tr_free
-  - zhconv
+  - cloudscraper~=1.2.60
+  - nonebot[scheduler]==1.8.0
+  - peony-twitter[all]~=2.1.2
+  - sogou_tr_free~=0.0.8
+  - zhconv~=1.4.1
+  - meme_generator==0.1.13
+  - arclet-alconna
+  - opencc-python-reimplemented
