@@ -44,6 +44,7 @@ dependencies:
 - pyyaml
 - strenum
 - urllib3~=1.26
+- ujson
 - pip:
   - aiocqhttp~=1.4.0
   - bbcode
