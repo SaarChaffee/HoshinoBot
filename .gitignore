@@ -23,7 +23,7 @@ hoshino/modules/pcrjjc3-tw
 hoshino/modules/priconne/arena/buffer
 hoshino/modules/priconne/arena/dic.npy
 _git/
-
+*.code-workspace
 # log
 log/
 
