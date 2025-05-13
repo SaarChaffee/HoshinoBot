@@ -16,7 +16,7 @@ from hoshino.typing import *
 
 try:
     import ujson as json
-except:
+except BaseException:
     import json
 
 # service management
@@ -59,7 +59,7 @@ def _save_service_config(service):
 
 
 class ServiceFunc:
-    def __init__(self, sv: "Service", func: Callable, only_to_me: bool, normalize_text: bool=False):
+    def __init__(self, sv: "Service", func: Callable, only_to_me: bool, normalize_text: bool = False):
         self.sv = sv
         self.func = func
         self.only_to_me = only_to_me
@@ -96,6 +96,7 @@ class Service:
     储存位置：
     `~/.hoshino/service_config/{ServiceName}.json`
     """
+
     def __init__(self, name, use_priv=None, manage_priv=None, enable_on_default=None, visible=None,
                  help_=None, bundle=None):
         """
@@ -154,13 +155,20 @@ class Service:
         self.logger.info(
             f'Service {self.name} is disabled at group {group_id}')
 
+    def check_super(self, user_id):
+        return hoshino.config.SUPERUSERS_OVER_CHECK and user_id in hoshino.config.SUPERUSERS
+
     def check_enabled(self, group_id):
         return bool((group_id in self.enable_group) or (self.enable_on_default and group_id not in self.disable_group))
 
-
     def _check_all(self, ev: CQEvent):
         gid = ev.group_id
-        return self.check_enabled(gid) and not priv.check_block_group(gid) and priv.check_priv(ev, self.use_priv)
+        normal_check = (
+            self.check_enabled(gid)
+            and not priv.check_block_group(gid)
+            and priv.check_priv(ev, self.use_priv)
+        )
+        return normal_check or self.check_super(ev.user_id)
 
     async def get_enable_groups(self) -> dict:
         """获取所有启用本服务的群
@@ -182,7 +190,6 @@ class Service:
                 gl[g].append(sid)
         return gl
 
-
     def on_message(self, event='group') -> Callable:
         def deco(func) -> Callable:
             @wraps(func)
@@ -197,10 +204,10 @@ class Service:
             return self.bot.on_message(event)(wrapper)
         return deco
 
-
     def on_prefix(self, *prefix, only_to_me=False) -> Callable:
         if len(prefix) == 1 and not isinstance(prefix[0], str):
             prefix = prefix[0]
+
         def deco(func) -> Callable:
             sf = ServiceFunc(self, func, only_to_me)
             for p in prefix:
@@ -211,10 +218,10 @@ class Service:
             return func
         return deco
 
-
     def on_fullmatch(self, *word, only_to_me=False) -> Callable:
         if len(word) == 1 and not isinstance(word[0], str):
             word = word[0]
+
         def deco(func) -> Callable:
             @wraps(func)
             async def wrapper(bot, event: CQEvent):
@@ -241,10 +248,10 @@ class Service:
             # ```
         return deco
 
-
     def on_suffix(self, *suffix, only_to_me=False) -> Callable:
         if len(suffix) == 1 and not isinstance(suffix[0], str):
             suffix = suffix[0]
+
         def deco(func) -> Callable:
             sf = ServiceFunc(self, func, only_to_me)
             for s in suffix:
@@ -255,10 +262,10 @@ class Service:
             return func
         return deco
 
-
     def on_keyword(self, *keywords, only_to_me=False, normalize=True) -> Callable:
         if len(keywords) == 1 and not isinstance(keywords[0], str):
             keywords = keywords[0]
+
         def deco(func) -> Callable:
             sf = ServiceFunc(self, func, only_to_me, normalize)
             for kw in keywords:
@@ -269,10 +276,10 @@ class Service:
             return func
         return deco
 
-
     def on_rex(self, rex: Union[str, re.Pattern], only_to_me=False, normalize=True) -> Callable:
         if isinstance(rex, str):
             rex = re.compile(rex)
+
         def deco(func) -> Callable:
             sf = ServiceFunc(self, func, only_to_me, normalize)
             if isinstance(rex, re.Pattern):
@@ -281,7 +288,6 @@ class Service:
                 self.logger.error(f'Failed to add rex trigger `{rex}`, expecting `str` or `re.Pattern` but `{type(rex)}` given!')
             return func
         return deco
-
 
     def on_command(self, name, *, only_to_me=False, deny_tip=None, **kwargs) -> Callable:
         kwargs['only_to_me'] = only_to_me
@@ -315,7 +321,6 @@ class Service:
             return nonebot.on_command(name, **kwargs)(wrapper)
         return deco
 
-
     def on_natural_language(self, keywords=None, **kwargs) -> Callable:
         def deco(func) -> Callable:
             @wraps(func)
@@ -337,11 +342,11 @@ class Service:
             return nonebot.on_natural_language(keywords, **kwargs)(wrapper)
         return deco
 
-
     def scheduled_job(self, *args, **kwargs) -> Callable:
         kwargs.setdefault('timezone', pytz.timezone('Asia/Shanghai'))
         kwargs.setdefault('misfire_grace_time', 60)
         kwargs.setdefault('coalesce', True)
+
         def deco(func: Callable[[], Any]) -> Callable:
             @wraps(func)
             async def wrapper():
@@ -355,7 +360,6 @@ class Service:
                     self.logger.exception(e)
             return nonebot.scheduler.scheduled_job(*args, **kwargs)(wrapper)
         return deco
-
 
     async def broadcast(self, msgs, TAG='', interval_time=0.5, randomizer=None):
         bot = self.bot
@@ -375,7 +379,6 @@ class Service:
                 self.logger.error(f"群{gid} 投递{TAG}失败：{type(e)}")
                 self.logger.exception(e)
 
-
     def on_request(self, *events):
         def deco(func):
             @wraps(func)
@@ -385,8 +388,7 @@ class Service:
                 return await func(session)
             return nonebot.on_request(*events)(wrapper)
         return deco
-    
-    
+
     def on_notice(self, *events):
         def deco(func):
             @wraps(func)
@@ -398,12 +400,13 @@ class Service:
         return deco
 
 
-
 sulogger = log.new_logger('sucmd', hoshino.config.DEBUG)
+
 
 def sucmd(name, force_private=True, **kwargs) -> Callable:
     kwargs['privileged'] = True
     kwargs['only_to_me'] = False
+
     def deco(func) -> Callable:
         @wraps(func)
         async def wrapper(session: CommandSession):
