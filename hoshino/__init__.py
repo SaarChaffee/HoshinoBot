@@ -48,7 +48,6 @@ __all__ = [
 _bot = None
 logger = log.new_logger('hoshino', config.DEBUG)
 
-
 def init() -> HoshinoBot:
     global _bot
     nonebot.init(config)
@@ -57,8 +56,8 @@ def init() -> HoshinoBot:
     _bot.finish = HoshinoBot.finish
     _bot.silence = HoshinoBot.silence
 
+    nonebot.logger.addHandler(log.full_handler)
     nonebot.logger.addHandler(log.error_handler)
-    nonebot.logger.addHandler(log.critical_handler)
 
     # Hoshino User Data
     os.makedirs(os.path.expanduser('~/.hoshino'), exist_ok=True)
