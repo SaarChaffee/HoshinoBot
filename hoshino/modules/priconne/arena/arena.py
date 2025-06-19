@@ -31,6 +31,8 @@ bufferpath = join(curpath, 'buffer/buffer.json')
 def __get_auth_key():
     return config.priconne.arena.AUTH_KEY
 
+def _get_api():
+    return config.priconne.arena.API or "https://api.pcrdfans.com"
 
 def id_list2str(id_list: list) -> str:  # [1001, 1002, 1018, 1052, 1122] -> "10011002101810521122"
     return ''.join([str(x) for x in id_list])
@@ -171,7 +173,7 @@ async def do_query(id_list, region=1, try_cnt=1):
         else:
             id_list_query = [x * 100 + 1 for x in id_list]
             header = {
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
                 "authorization": __get_auth_key(),
             }
             payload = {
@@ -192,9 +194,10 @@ async def do_query(id_list, region=1, try_cnt=1):
                 if should_sleep:
                     await asyncio.sleep(1)
                 res = None
+                api = _get_api()
                 try:
                     resp = await aiorequests.post(
-                        "https://api.pcrdfans.com/x/v1/search",
+                        api + "/x/v1/search",
                         headers=header,
                         json=payload,
                         timeout=5,
